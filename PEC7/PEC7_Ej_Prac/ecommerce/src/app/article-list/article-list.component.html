@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="input-search">
+        <label for="search">Search Article:</label>
+        <input type="text" placeholder="insert article name" [(ngModel)]="searchTerm" id="search">
+    </div>
+    <app-article-item *ngFor="let article of filteredArticles$ | async" [article]="article"></app-article-item>
+</div>

@@ -1,0 +1,62 @@
+<h2>Create Reactive Form</h2>
+
+<div class="form-group">
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <div class="article-name">
+            <input type="text"
+                placeholder="Article Name"
+                name="articleName"
+                formControlName="name">
+        </div>
+        <div class="red-message" *ngIf="articleForm.get('name').invalid &&
+                    (articleForm.get('name').dirty ||
+                    articleForm.get('name').touched )">
+            <div *ngIf="articleForm.get('name').errors.required">
+                Article Name is required
+            </div>
+            <div *ngIf="articleForm.get('name').errors.invalidName">
+                Article Name is invalid
+            </div>
+        </div>
+        <div class="article-price">
+        <input type="text"
+               placeholder="Article Price"
+               formControlName="price">
+        </div>
+        <div class="red-message" *ngIf="articleForm.get('price').invalid &&
+                  (articleForm.get('price').dirty ||
+                    articleForm.get('price').touched )">
+            <div *ngIf="articleForm.get('price').errors.required">
+                Article Price is required
+            </div>
+            <div *ngIf="articleForm.get('price').errors.min">
+                Article Price must be minimun 0.1
+            </div>
+            <div *ngIf="articleForm.get('price').errors.notANumber">
+                Article Price must be a number
+            </div>
+        </div>
+        <div class="article-image-url">
+        <input type="text"
+               placeholder="Image URL"
+               formControlName="url">
+        </div>
+        <div class="red-message" *ngIf="articleForm.get('url').invalid &&
+                  (articleForm.get('url').dirty ||
+                    articleForm.get('url').touched )">
+            <div *ngIf="articleForm.get('url').errors.required">
+                Article Image URL is required
+            </div>
+            <div *ngIf="articleForm.get('url').errors.invalidUrl">
+                The URL does not have the proper format
+            </div>
+        </div>
+        <div class="article-on-sale">
+        <input type="checkbox"
+               placeholder="Is on sale"
+               formControlName="onSale">
+               Product on sale
+        </div>
+        <button>Submit</button>
+    </form>
+</div>

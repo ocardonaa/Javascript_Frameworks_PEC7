@@ -1,0 +1,28 @@
+ul {
+    list-style-type: none;
+}
+
+nav {
+    background-color: black;
+    color: white;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+}
+
+li {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+a:link, a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: wheat;
+}

@@ -1,0 +1,36 @@
+.article-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.article-container .name h3,
+.article-container .name h4 .image {
+    display: inline-block;
+}
+
+.available {
+    background-color: lightgreen;
+}
+
+.unavailable {
+    background-color: lightcoral;
+}
+
+.available-price {
+    color: black;
+}
+
+.unavailable-price {
+    color: gray;
+}
+
+.quantity, .quantity-text {
+    display: inline;
+}
+
+.quantity-text {
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -1,0 +1,55 @@
+<h2>Create Template Form</h2>
+
+<div class="form-group">
+    <form (ngSubmit)="createArticle(articleForm)" #articleForm="ngForm">
+        <div ngModelGroup="article">
+            <div class="article-name">
+                <input type="text"
+                placeholder="Article Name"
+                required
+                name="name"
+                ngModel
+                #nameCtrl="ngModel">
+            </div>
+            <div class="red-message" *ngIf="nameCtrl.errors?.required && nameCtrl.touched">
+                Article Name is required
+            </div>
+            <div class="article-price">
+                <input type="number"
+                placeholder="Article Price"
+                name="price"
+                required
+                min="1"
+                ngModel
+                #priceCtrl="ngModel">
+            </div>
+            <div class="red-message" *ngIf="priceCtrl.errors?.required && priceCtrl.touched">
+                Article Price is required
+            </div>
+            <div class="article-url">
+            <input
+                type="text"
+                placeholder="Article URL"
+                name="imageUrl"
+                required
+                pattern="https?:\/\/[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}(\/[a-zA-Z0-9.\-]*)*"
+                ngModel
+                #urlCtrl="ngModel"
+            />
+            </div>
+            <div class="red-message" *ngIf="urlCtrl.errors?.required && urlCtrl.touched">
+                Article Image URL is required
+            </div>
+            <div class="red-message" *ngIf="urlCtrl.errors?.pattern && (urlCtrl.dirty || urlCtrl.touched)">
+                Article Image URL must be an URL
+            </div>
+            <div class="article-on-sale">
+                <input type="checkbox"
+                name="isOnSale"
+                [(ngModel)]="article.isOnSale">
+                Is on sale
+            </div>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+</div>
