@@ -12,12 +12,16 @@ export class ArticleService {
   }
 
   getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>('api/articles');
+    return this.http.get<Article[]>('/api/articles');
+  }
+
+  getArticle(articleCode: string): Observable<Article> {
+    return this.http.get<Article>('/api/article/' + articleCode);
   }
 
   createArticle(article: any): Observable<any> {
     const newArticle = new Article(0, article.name, article.url, parseFloat(article.price), article.onSale, parseInt(article.quantityInCart));
-    return this.http.post<Article[]>('api/articles', newArticle);
+    return this.http.post<Article[]>('/api/articles', newArticle);
   }
 
   changeQuantity(articleID: number, units: number): Observable<Article> {

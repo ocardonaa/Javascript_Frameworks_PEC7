@@ -7,13 +7,14 @@ import { ArticleItemComponent } from './article-item/article-item.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
-import { ArticleNewTemplateComponent } from './article-new-template/article-new-template.component';
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
-import { InicioComponent } from './inicio/inicio.component';
 import { ArticleService } from './article.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { PricePipe } from './article-item/price.pipe';
 import { ImagePipe } from './article-item/image.pipe';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,15 @@ import { ImagePipe } from './article-item/image.pipe';
     ArticleItemComponent,
     ArticleListComponent,
     NavbarComponent,
-    ArticleNewTemplateComponent,
     ArticleNewReactiveComponent,
-    InicioComponent,
     PricePipe,
-    ImagePipe
+    ImagePipe,
+    LoginComponent,
+    RegisterComponent,
+    ArticleDetailComponent,
+    LoginComponent,
+    RegisterComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,7 @@ import { ImagePipe } from './article-item/image.pipe';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ArticleService],
+  providers: [ArticleService, provideHttpClient(withFetch())],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
