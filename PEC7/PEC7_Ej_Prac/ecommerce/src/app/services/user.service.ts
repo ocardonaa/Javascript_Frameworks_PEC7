@@ -12,13 +12,13 @@ export class UserService {
   }
 
   loginUser(username: string, password: string): Observable<any> {
-    return this.http.post('user/login', { username: username, password: password }).pipe(map((resp: any) => {
+    return this.http.post('/api/user/login', { username: username, password: password }).pipe(map((resp: any) => {
       this.userStore.token = resp.token;
       return resp;
     }));
   }
 
   registerUser(username: string, password: string): Observable<any> {
-    return this.http.post('user/register', { username: username, password: password });
+    return this.http.post('api/user/register', { username: username, password: password });
   }
 }

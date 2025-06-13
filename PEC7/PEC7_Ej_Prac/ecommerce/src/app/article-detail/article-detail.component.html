@@ -1,1 +1,16 @@
-<p>article-detail works!</p>
+<div class="article-container">
+    <div class="name">
+        <h3>{{article.name}}</h3>
+    </div>
+    <div class="quantity">
+        {{ article.id }}
+    </div>
+    <div class="image"><img src="../{{article.imageUrl | defaultPhoto}}"></div>
+    <div class="price">{{article.price | formatPrice}}</div>
+    <div class="quantity">
+        {{ article.quantityInCart }}
+    </div>
+    <div class="quantity">
+        {{ article.isOnSale }}
+    </div>
+</div>

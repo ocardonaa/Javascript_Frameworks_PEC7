@@ -17,6 +17,9 @@ export class UserStoreService {
   }
 
   isLoggedIn() {
-    return this.token != null;
+    const auxToken = localStorage.getItem('authToken');
+    this._token = auxToken;
+    return this._token != null;
   }
+
 }

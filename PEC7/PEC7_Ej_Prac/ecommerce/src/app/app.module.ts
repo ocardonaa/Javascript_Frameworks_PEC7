@@ -8,13 +8,15 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component';
-import { ArticleService } from './article.service';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { ArticleService } from './services/article.service';
+import { HttpClientModule } from '@angular/common/http';
 import { PricePipe } from './article-item/price.pipe';
 import { ImagePipe } from './article-item/image.pipe';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { UserStoreService } from './services/user-store.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ArticleService, provideHttpClient(withFetch())],
+  providers: [ArticleService, UserStoreService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

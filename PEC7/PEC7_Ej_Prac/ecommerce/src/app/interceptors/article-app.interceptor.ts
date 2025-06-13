@@ -1,15 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpResponse} from '@angular/common/http';
-import {HttpHandler, HttpRequest, HttpErrorResponse} from '@angular/common/http'
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { UserStoreService } from './user-store.service';
+import { UserStoreService } from '../services/user-store.service';
 
 @Injectable()
 export class ArticleAppInterceptor implements HttpInterceptor {
 
-  constructor(private userStore: UserStoreService) {}
+  constructor(private userStore: UserStoreService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.userStore.token) {

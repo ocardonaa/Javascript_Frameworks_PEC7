@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../article.service';
+import { Component } from '@angular/core';
+import { ArticleService } from '../services/article.service';
 import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl, FormBuilder } from '@angular/forms';
 import { Article } from '../model/article';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-new-reactive',
@@ -16,14 +17,14 @@ export class ArticleNewReactiveComponent {
   public article: Article;
   public message = null;
 
-  constructor(private fb: FormBuilder, private articleService: ArticleService) {
+  constructor(private fb: FormBuilder, private articleService: ArticleService, private router: Router) {
     this.createForm();
   }
 
   createForm() {
     this.articleForm = this.fb.group({
       name: new FormControl(null, [Validators.required, this.NameArticleValidator]),
-      url: new FormControl(null, [Validators.required, this.urlValidator]),
+      url: new FormControl(null, [Validators.required]),
       onSale: new FormControl(false),
       price: new FormControl(null, [Validators.required, this.priceValidator, Validators.min(0.1)])
     })
@@ -47,6 +48,7 @@ export class ArticleNewReactiveComponent {
       this.articleService.createArticle(articleToCreate).subscribe((result: any) => {
         this.message = result.msg;
         this.initializeArticle();
+        this.router.navigate(['article', 'list']);
       }, (err: { msg: any; }) => {
         this.message = err.msg;
       })

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ArticleService } from '../article.service';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +11,10 @@ import { ArticleService } from '../article.service';
 export class RegisterComponent {
   public registerForm: FormGroup;
   public message = null;
+  public username: string = '';
+  public password: string = '';
 
-  constructor(private fb: FormBuilder, private articleService: ArticleService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.createRegister();
   }
 
@@ -24,9 +27,21 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Send to service')
-    } else {
-      console.log("Invalid form");
+      this.username = this.registerForm.value.username;
+      this.password = this.registerForm.value.password;
+      this.userService.registerUser(this.username, this.password)
+        .subscribe((resp) => {
+          console.log('Successfully registered');
+          this.message = resp.msg;
+          this.router.navigate(['login']);
+        }, (err) => {
+          console.error('Error registering', err);
+          this.message = err.error.msg;
+        });
     }
+    else {
+      console.log('Invalid form');
+    }
+
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Article } from './model/article';
+import { Article } from '../model/article';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,8 +15,8 @@ export class ArticleService {
     return this.http.get<Article[]>('/api/articles');
   }
 
-  getArticle(articleCode: string): Observable<Article> {
-    return this.http.get<Article>('/api/article/' + articleCode);
+  getArticle(code: number): Observable<Article> {
+    return this.http.get<Article>('/api/articles/' + code);
   }
 
   createArticle(article: any): Observable<any> {

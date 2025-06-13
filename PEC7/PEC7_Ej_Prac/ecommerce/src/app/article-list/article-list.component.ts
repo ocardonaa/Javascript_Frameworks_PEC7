@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../model/article';
-import { ArticleService } from '../article.service';
+import { ArticleService } from '../services/article.service';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
 

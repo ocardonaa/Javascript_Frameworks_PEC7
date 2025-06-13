@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
-import { ArticleService } from '../article.service';
+import { Component, OnInit } from '@angular/core';
 import { Article } from '../model/article';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
-  styleUrl: './article-detail.component.css'
+  styleUrls: ['./article-detail.component.css', '../article-item/article-item.component.css']
 })
-export class ArticleDetailComponent {
+
+export class ArticleDetailComponent implements OnInit {
   public article: Article;
-  constructor(private stockService: ArticleService,
-    private route: ActivatedRoute) { } 1
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const articleCode = this.route.snapshot.paramMap.get('code'); 2
-    this.stockService.getArticle(articleCode).subscribe(article => this.article = article);
+    this.route.data.subscribe((data: { article: Article }) => {
+      this.article = data.article;
+    })
   }
 }
